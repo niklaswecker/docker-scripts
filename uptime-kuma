@@ -1,0 +1,12 @@
+apt update
+apt install sudo nano wget curl -y
+sleep 2
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+sleep 2
+systemctl stop docker
+systemctl enable docker
+systemctl start docker
+docker run -d --restart=always -p 80:3001 -v uptime-kuma:/app/data --name uptime-kuma louislam/uptime-kuma:1
+sleep 2
+docker ps
